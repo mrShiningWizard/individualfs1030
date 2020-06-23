@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  port:     '3300',
-  password : 'muhammad123$'
+  host : process.env.DATABASE_HOST,
+  user : process.env.DATABASE_USER,
+  password : process.env.DATABASE_PASSWORD,
+  database : process.env.DATABASE_NAME
 });
 
 connection.query('CREATE Database IF NOT EXISTS muhammad;', (err) => {
@@ -12,7 +12,7 @@ connection.query('CREATE Database IF NOT EXISTS muhammad;', (err) => {
   console.log('Default database created.');
   connection.query("USE muhammad", (err) => {
     if (err) throw err;
-    console.log('database in use: muhammad')  
+    console.log('database in use: muhammad')
 
 
     // Create Tables
