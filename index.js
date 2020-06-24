@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+//const port = 3000
 const database = require('./public/database.json')
 const fs = require('fs')
 
@@ -20,4 +20,5 @@ const db = require('./database')
 const routes = require('./routes')
 app.use(routes)
 
+const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Secure connection established on port ${port}`))
