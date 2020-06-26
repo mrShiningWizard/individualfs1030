@@ -22,3 +22,7 @@ app.use(routes)
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Secure connection established on port ${port}`))
+
+module.exports = {
+  app, db
+}

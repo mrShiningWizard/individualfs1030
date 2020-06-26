@@ -1,20 +1,23 @@
 # Use the official image as a parent image.
 FROM node:current-slim
 
-# Set the working directory.
-WORKDIR /usr/src/test
+# Copy source code
+COPY . /app
 
-# Copy the file from your host to your current location.
-COPY package.json .
+# Change working directory
+WORKDIR /app
 
-# Run the command inside your image filesystem.
+# Install dependencies
 RUN npm install
 
-# Inform Docker that the container is listening on the specified port at runtime.
-EXPOSE 3001
+# Expose API port to the outside
+EXPOSE 8080
 
-# Run the specified command within the container.
-CMD [ "npm", "run", "test" ]
+# Set ENV
+ENV DATABASE_HOST /cloudsql/fs1040-website:us-east1:fs1040db=tcp:3306
+ENV DATABASE_USER api
+ENV DATABASE_PASSWORD securepass123
+ENV DATABASE_NAME muhammad
 
-# Copy the rest of your app's source code from your host to your image filesystem.
-COPY . .
+# Launch application
+CMD ["npm","start"]

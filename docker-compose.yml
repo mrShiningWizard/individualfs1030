@@ -2,32 +2,37 @@ version: "3.7"
 
 services:
   api:
-    # image: node:12-alpine
+    #image: node:12-alpine
     build:
       context: .
       dockerfile: Dockerfile
     #command: sh -c "npm install && npm run start"
     ports:
       - 8080:8080
+    #working_dir: /project-backend
+    #volumes:
+    #  - ./:/project-backend
+    depends_on:
+      - mysql
 
   mysql:
     image: mysql:5.7
     volumes:
-      - test-mysql-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
     ports:
       - '3306:3306'
     expose:
       - '3306'
     environment:
-      MYSQL_DATABASE: 'assignment4'
+      MYSQL_DATABASE: 'muhammad'
+      MYSQL_HOST: '/cloudsql/fs1040-website:us-east1:fs1040db=tcp:3306'
       # So you don't have to use root, but you can if you like
-      MYSQL_USER: 'root'
+      MYSQL_USER: 'api'
       # You can use whatever password you like
-      MYSQL_PASSWORD: 'password'
+      MYSQL_PASSWORD: 'securepass123'
       # Password for root access
-      MYSQL_ROOT_PASSWORD: 'password'
       # MYSQL_ROOT_PASSWORD: secret
       # MYSQL_DATABASE: main_test
 
 volumes:
-  test-mysql-data:
+  mysql-data:

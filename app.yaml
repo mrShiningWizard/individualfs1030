@@ -8,9 +8,9 @@ automatic_scaling:
 
 env_variables:
   DATABASE_HOST: cloudsql
-  DATABASE_USER: root
-  DATABASE_PASSWORD: password
-  DATABASE_NAME: assignment4
+  DATABASE_USER: api
+  DATABASE_PASSWORD: securepass123
+  DATABASE_NAME: muhammad
 
 beta_settings:
   # The connection name of your instance, available by using
