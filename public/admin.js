@@ -46,38 +46,24 @@ const Table = () => {
     }
 
     const handleFetchData = () => {
-        // let xhttp = new XMLHttpRequest();
-        // xhttp.onreadystatechange = function() {
-        //     if (this.readyState == 4 && this.status == 200) {
-        //         setData(JSON.parse(this.responseText))
-        //         setSuccess({
-        //           status: 'success',
-        //           show: false
-        //         })
-        //     } else {
-        //         setSuccess({
-        //           status: 'error',
-        //           show: true
-        //         })
-        //     }
-        // };
-        // xhttp.open("GET", "/inquiries", true);
-        // xhttp.setRequestHeader("Content-type", "application/json");
-        // xhttp.send();
-        fetch('/inquiries')
-        .then(resp => {
-          setData(JSON.parse(resp))
-          setSuccess({
-            status: 'success',
-            show: false
-          })
-        }
-        .catch(err => {
-          setSuccess({
-            status: 'error',
-            show: true
-          })
-        })
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                setData(JSON.parse(this.responseText))
+                setSuccess({
+                  status: 'success',
+                  show: false
+                })
+            } else {
+                setSuccess({
+                  status: 'error',
+                  show: true
+                })
+            }
+        };
+        xhttp.open("GET", "/inquiries", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
     }
 
     const handleFetchSkills = () => {
