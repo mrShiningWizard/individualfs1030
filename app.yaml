@@ -7,10 +7,13 @@ automatic_scaling:
     max_num_instances: 7
 
 env_variables:
-  DATABASE_HOST: cloudsql
-  DATABASE_USER: api
-  DATABASE_PASSWORD: securepass123
-  DATABASE_NAME: muhammad
+  DATABASE_HOST: ${DATABASE_HOST}
+  DATABASE_USER: ${DATABASE_USER}
+  DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+  DATABASE_NAME: ${DATABASE_NAME}
+
+includes:
+  - dbconfig.yaml
 
 beta_settings:
   # The connection name of your instance, available by using
